@@ -21,6 +21,7 @@ public class QRCodeServiceImpl {
             BitMatrix bitMatrix = qrCodeWriter.encode(qrContent, BarcodeFormat.QR_CODE, width, height);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             MatrixToImageWriter.writeToStream(bitMatrix, "PNG", byteArrayOutputStream);
+            log.info("Generated QR Code for Order-Customer {}", qrContent);
             return byteArrayOutputStream.toByteArray();
         } catch (WriterException e) {
             log.error(e.getMessage(), e);
