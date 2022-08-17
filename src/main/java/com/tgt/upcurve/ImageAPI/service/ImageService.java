@@ -4,7 +4,6 @@ import com.tgt.upcurve.ImageAPI.entity.ImageEntity;
 import com.tgt.upcurve.ImageAPI.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -18,7 +17,7 @@ public class ImageService {
     @Value("${qr.code.height}")
     private Integer qrCodeHeight;
 
-    public ImageService(ImageRepository imageRepository, QRCodeServiceImpl qrCodeService){
+    public ImageService(ImageRepository imageRepository,QRCodeServiceImpl qrCodeService){
         this.imageRepository=imageRepository;
         this.qrCodeService = qrCodeService;
     }
@@ -38,5 +37,14 @@ public class ImageService {
            return image.get();
        }
        return null;
+    }
+
+    public ImageEntity saveImage(ImageEntity image) {
+        ImageEntity savedImage = null;
+        Optional<ImageEntity> existingImage = imageRepository.findById(image.getId());
+        if(null == existingImage){
+            savedImage = imageRepository.save(image);
+        }
+        return null;
     }
 }

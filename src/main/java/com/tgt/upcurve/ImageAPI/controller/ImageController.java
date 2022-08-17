@@ -2,11 +2,14 @@ package com.tgt.upcurve.ImageAPI.controller;
 
 import com.tgt.upcurve.ImageAPI.entity.ImageEntity;
 import com.tgt.upcurve.ImageAPI.service.ImageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/image_api/v1")
 public class ImageController {
+    @Autowired
     private final ImageService imageService;
     public ImageController(ImageService imageService){
         this.imageService=imageService;
@@ -20,6 +23,11 @@ public class ImageController {
     @GetMapping("/get_image/{id}")
     public ImageEntity getImage(@PathVariable("id") Long imageId) {
         return imageService.getImage(imageId);
+
+    }
+    @PostMapping
+    public ImageEntity saveImage(@Validated @RequestBody ImageEntity image){
+        return imageService.saveImage(image);
     }
 }
 
