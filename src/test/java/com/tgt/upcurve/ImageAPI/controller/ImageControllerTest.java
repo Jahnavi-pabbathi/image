@@ -39,7 +39,7 @@ public class ImageControllerTest {
                     .andExpect(status().is2xxSuccessful())
                     .andReturn();
             String savedResponse = responseSave.getResponse().getContentAsString();
-            MvcResult responseFetch = mockMvc.perform(get(URI_GENERATE_BY_ORDER_ID_CUSTOMER_ID, 10, 4)
+            MvcResult responseFetch = mockMvc.perform(get(URI_GENERATE_BY_ORDER_ID_CUSTOMER_ID, 1, 1)
                             .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().is2xxSuccessful())
                     .andReturn();
