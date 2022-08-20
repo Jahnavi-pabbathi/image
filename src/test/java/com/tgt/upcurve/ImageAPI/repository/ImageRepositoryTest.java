@@ -20,7 +20,7 @@ import java.util.Optional;
 public class ImageRepositoryTest {
     @Autowired
     ImageRepository imageRepository;
-    private static final String ORDER_JSON_FILE_PATH = "/ImageData.json";
+    private static final String ORDER_JSON_FILE_PATH = "/imageData.json";
 
     @Test
     public void testGetImageByImageId() throws Exception {
@@ -44,5 +44,5 @@ public class ImageRepositoryTest {
         ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
         ImageEntity savedImageEntity = imageRepository.save(image);
         Assertions.assertNotNull(savedImageEntity);
-}
+    }
 }

@@ -19,6 +19,7 @@ public class ImageEntity {
     private Long id;
 
     @Column(name = "image_code")
+    @Lob
     private byte[] imageCode;
 
     @Column(name = "created_at")
