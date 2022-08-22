@@ -2,6 +2,7 @@ package com.tgt.upcurve.ImageAPI.service;
 
 import com.tgt.upcurve.ImageAPI.ImageApiApplication;
 import com.tgt.upcurve.ImageAPI.entity.ImageEntity;
+import com.tgt.upcurve.ImageAPI.response.ImageResponse;
 import com.tgt.upcurve.ImageAPI.utility.JsonUtility;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,15 +34,15 @@ public class ImageServiceTest {
     @Test
     public void testGetImage() throws Exception {
         ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
-        ImageEntity savedImageEntity = imageService.saveImage(image);
-        ImageEntity existingImageEntity=imageService.getImage(77L);
+        ImageResponse savedImageEntity = imageService.saveImage(image);
+        ImageResponse existingImageEntity=imageService.getImage(77L);
         Assertions.assertNotNull(image);
     }
 
     @Test
     public void testSaveImage() throws Exception {
         ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
-        ImageEntity savedImage = imageService.saveImage(image);
+        ImageResponse savedImage = imageService.saveImage(image);
         Assertions.assertNotNull(image);
     }
 }

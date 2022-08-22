@@ -1,7 +1,9 @@
 package com.tgt.upcurve.ImageAPI.service;
 
 import com.tgt.upcurve.ImageAPI.entity.ImageEntity;
+import com.tgt.upcurve.ImageAPI.mapper.ImageMapper;
 import com.tgt.upcurve.ImageAPI.repository.ImageRepository;
+import com.tgt.upcurve.ImageAPI.response.ImageResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -22,29 +24,29 @@ public class ImageService {
         this.qrCodeService = qrCodeService;
     }
 
-    public ImageEntity generateImage(Integer orderId, Integer customerId) {
+    public ImageResponse generateImage(Integer orderId, Integer customerId) {
         String qrContent = orderId + "-" + customerId;
         byte[] newQRCode = qrCodeService.generateQRCode(qrContent, qrCodeWidth, qrCodeHeight);
         ImageEntity imageEntity = new ImageEntity();
         imageEntity.setImageCode(newQRCode);
-        return imageRepository.saveAndFlush(imageEntity);
+        return ImageMapper.INSTANCE.toResponse(imageRepository.saveAndFlush(imageEntity));
     }
 
-    public ImageEntity getImage(Long imageId) {
+    public ImageResponse getImage(Long imageId) {
         Optional<ImageEntity> image = null;
        image = imageRepository.findById(imageId);
        if (image.isPresent()) {
-           return image.get();
+           return ImageMapper.INSTANCE.toResponse(image.get());
        }
        return null;
     }
 
-    public ImageEntity saveImage(ImageEntity image) {
+    public ImageResponse saveImage(ImageEntity image) {
         ImageEntity savedImage = null;
         Optional<ImageEntity> existingImage = imageRepository.findById(image.getId());
         if(null == existingImage){
             savedImage = imageRepository.save(image);
         }
-        return null;
+        return ImageMapper.INSTANCE.toResponse(savedImage);
     }
 }
