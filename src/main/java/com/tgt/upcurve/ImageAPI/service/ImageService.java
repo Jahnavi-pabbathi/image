@@ -49,4 +49,11 @@ public class ImageService {
         }
         return ImageMapper.INSTANCE.toResponse(savedImage);
     }
+
+    public ImageResponse generateImage(String qrContent) {
+        byte[] newQRCode = qrCodeService.generateQRCode(qrContent, qrCodeWidth, qrCodeHeight);
+        ImageEntity imageEntity = new ImageEntity();
+        imageEntity.setImageCode(newQRCode);
+        return ImageMapper.INSTANCE.toResponse(imageRepository.saveAndFlush(imageEntity));
+    }
 }
