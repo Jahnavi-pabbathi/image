@@ -20,7 +20,12 @@ public class ImageController {
         return imageService.generateImage(orderId, customerId);
     }
 
-    @GetMapping("/get_image/{id}")
+    @GetMapping("/generate_image/content/{content}")
+    public ImageResponse generateImage(@PathVariable("content") String content) {
+        return imageService.generateImage(content);
+    }
+
+        @GetMapping("/get_image/{id}")
     public ImageResponse getImage(@PathVariable("id") Long imageId) {
         return imageService.getImage(imageId);
 
