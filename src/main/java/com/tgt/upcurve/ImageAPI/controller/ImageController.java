@@ -1,8 +1,10 @@
 package com.tgt.upcurve.ImageAPI.controller;
 
+import com.tgt.upcurve.ImageAPI.request.ImageRequest;
 import com.tgt.upcurve.ImageAPI.response.ImageResponse;
 import com.tgt.upcurve.ImageAPI.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,12 +22,12 @@ public class ImageController {
         return imageService.generateImage(orderId, customerId);
     }
 
-    @GetMapping("/generate_image/content/{content}")
-    public ImageResponse generateImage(@PathVariable("content") String content) {
-        return imageService.generateImage(content);
+    @PostMapping("/generate_image")
+    public ImageResponse generateImage(@Validated @RequestBody ImageRequest imageRequest) {
+        return imageService.generateImage(imageRequest.getContent());
     }
 
-        @GetMapping("/get_image/{id}")
+    @GetMapping("/get_image/{id}")
     public ImageResponse getImage(@PathVariable("id") Long imageId) {
         return imageService.getImage(imageId);
 
