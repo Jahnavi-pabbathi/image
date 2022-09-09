@@ -20,11 +20,11 @@ import java.util.Optional;
 public class ImageRepositoryTest {
     @Autowired
     ImageRepository imageRepository;
-    private static final String ORDER_JSON_FILE_PATH = "/imageData.json";
+    private static final String IMAGE_JSON_FILE_PATH = "/imageData.json";
 
     @Test
     public void testGetImageByImageId() throws Exception {
-        ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
+        ImageEntity image = JsonUtility.getImageRequest(IMAGE_JSON_FILE_PATH);
         ImageEntity saveImageEntity = imageRepository.save(image);
         Optional<ImageEntity> fetchedImageEntity = imageRepository.findById(Long.valueOf(1));
         assert fetchedImageEntity != null;
@@ -32,7 +32,7 @@ public class ImageRepositoryTest {
 
     @Test
     public void testGeneratedImageOfOrderIdAndCustomerId() throws Exception {
-        ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
+        ImageEntity image = JsonUtility.getImageRequest(IMAGE_JSON_FILE_PATH);
         String qrContent = 10 + "-" + 1;
         byte[] newQRCode = qrContent.getBytes(StandardCharsets.UTF_8);
         ImageEntity savedImageEntity = imageRepository.save(image);
@@ -41,7 +41,7 @@ public class ImageRepositoryTest {
 
     @Test
     public void testSaveImageEntity() throws Exception {
-        ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
+        ImageEntity image = JsonUtility.getImageRequest(IMAGE_JSON_FILE_PATH);
         ImageEntity savedImageEntity = imageRepository.save(image);
         Assertions.assertNotNull(savedImageEntity);
     }

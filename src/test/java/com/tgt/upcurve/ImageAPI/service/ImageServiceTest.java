@@ -21,11 +21,11 @@ public class ImageServiceTest {
     @Autowired
     ImageService imageService;
 
-    private static final String ORDER_JSON_FILE_PATH = "/imageData.json";
+    private static final String IMAGE_JSON_FILE_PATH = "/imageData.json";
 
     @Test
     void testGenerateImage() throws Exception {
-        ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
+        ImageEntity image = JsonUtility.getImageRequest(IMAGE_JSON_FILE_PATH);
         image.setCreatedAt(LocalDateTime.of(1, 1, 1, 1, 1));
         imageService.generateImage(10, 1);
         assert image != null;
@@ -33,7 +33,7 @@ public class ImageServiceTest {
 
     @Test
     public void testGetImage() throws Exception {
-        ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
+        ImageEntity image = JsonUtility.getImageRequest(IMAGE_JSON_FILE_PATH);
         ImageResponse savedImageEntity = imageService.saveImage(image);
         ImageResponse existingImageEntity=imageService.getImage(77L);
         Assertions.assertNotNull(image);
@@ -41,7 +41,7 @@ public class ImageServiceTest {
 
     @Test
     public void testSaveImage() throws Exception {
-        ImageEntity image = JsonUtility.getImageRequest(ORDER_JSON_FILE_PATH);
+        ImageEntity image = JsonUtility.getImageRequest(IMAGE_JSON_FILE_PATH);
         ImageResponse savedImage = imageService.saveImage(image);
         Assertions.assertNotNull(image);
     }
