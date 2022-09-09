@@ -29,7 +29,7 @@ public class ImageControllerTest {
     MockMvc mockMvc;
 
     private static final String URI_GET_IMAGE_BY_IMAGE_ID = "/image_api/v1/get_image/{id}";
-    private static final String ORDER_JSON_FILE_PATH = "/imageData.json";
+    private static final String IMAGE_JSON_FILE_PATH = "/imageData.json";
     private static final String URI_GET_ORDER_ID_CUSTOMER_ID = "/image_api/v1/generate_image/order_id/{order_id}/customer_id/{customer_id}";
     private static final String URI_SAVE = "/image_api/v1";
 
