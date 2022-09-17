@@ -46,6 +46,13 @@ public class ImageServiceTest {
         assert image != null;
     }
 
+   @Test
+    void testSaveImage() throws Exception {
+        ImageEntity image = JsonUtility.getImageRequest(IMAGE_JSON_FILE_PATH);
+        ImageResponse savedImage = imageService.saveImage(image);
+        Assertions.assertNotNull(image);
+    }
+
 }
 
 
