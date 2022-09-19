@@ -8,9 +8,9 @@ spring:
       fail-on-empty-beans: false
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/OrderDB?sslmode=disable
-    username: postgres
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://ec2-52-200-5-135.compute-1.amazonaws.com:5432/dee5c43sgovkb3?sslmode=disable
+    username: zxaudipbwbrgsb
+    password: 4a97db46e70d295aa3a82756eee3628e4a8a379220aa7c3d5dbfbf013114f3db
   jpa:
     generate-ddl: 'false'
     database: POSTGRESQL
